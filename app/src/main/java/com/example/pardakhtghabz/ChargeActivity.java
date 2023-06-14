@@ -54,17 +54,17 @@ public class ChargeActivity extends AppCompatActivity {
                 operator = "3";
             }
             try {
-                callAPI("{MobileNo: " + number.getText() + ",OperatorType: " + operator + ","
-                        + "AmountPure: " + mablagh.getText() + ",}");
+                charge(number.getText().toString(),operator,mablagh.getText().toString());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
     }
 
-    void callAPI(String data) throws IOException {
+    void charge(String number,String operator,String mablagh) throws IOException {
 
-        RequestBody body = RequestBody.create(JSON, data);
+        RequestBody body = RequestBody.create(JSON, "{MobileNo: " + number+ ",OperatorType: "
+                + operator + "," + "AmountPure: "+mablagh+ ",}");
         Request request = new Request.Builder()
                 .url(link)
                 .post(body)
